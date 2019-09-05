@@ -24,4 +24,8 @@ class wordsController(private val service: wordsService) {
     fun getAllWords(@PathVariable("index")index: String = "0"):String{
         return service.getAll(index.toLong()).toString()
     }
+
+    @GetMapping("/size")
+    fun getSize():String =  "Size of list is :" + service.getSize()
+
 }

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import prod.givemeaword.Service.wordsService
 import java.io.File
+import java.io.InputStream
+import java.io.InputStreamReader
 
 @RestController
 class TestApi(private val service: wordsService){
@@ -18,21 +20,22 @@ class TestApi(private val service: wordsService){
 
     @GetMapping("/seed")
     fun seed() :String{
-        val file = "./words_alpha.txt"
+        val file = "./google-10000-english-usa.txt"
         var addCounter = 0
         var passCounter = 0
-        val bufferReader = File(file).bufferedReader()
         log.info("Seeding started")
-        bufferReader.useLines { lines -> lines.forEach {
+        val myList = mutableListOf<String>()
+        File(file).useLines { lines -> myList.addAll(lines) }
+
+
+      /*  bufferReader.useLines { lines -> lines.forEach {
             if(service.add(it))
                 addCounter++
         else
         passCounter++
-        }}
+        }}*/
         log.debug("Done")
         log.info(addCounter.toString() + "\n" + passCounter.toString())
         return "Seeding done! \n Added words: $addCounter \n Passed words: $passCounter"
     }
-    @GetMapping("/size")
-    fun getSizeOfList():String = "Size of list is " + getSizeOfList()
 }

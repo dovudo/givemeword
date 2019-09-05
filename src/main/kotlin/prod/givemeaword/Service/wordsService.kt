@@ -11,9 +11,11 @@ class wordsService(private val repository: wordsRepository){
     * @return false if word was passed
     * */
     fun add(word:String):Boolean{
+        val startTime = System.currentTimeMillis()
         return if(!checkExistWord(word)) {
-            val newWord = Word(-1, word, word.length)
-            repository.save(newWord)
+            repository.save(Word(-1,word,word.length))
+            val stopTime = System.currentTimeMillis() - startTime
+            println("Function was done while: $stopTime")
             true
         }
         else
@@ -25,6 +27,15 @@ class wordsService(private val repository: wordsRepository){
         return list
     }
     fun getAll(id: Long) = repository.getAllByIdAfter(id)
+    fun addAll(words: List<String>){
+        val startTime = System.currentTimeMillis()
+        val array: ArrayList<Word> = ArrayList()
+        words.map { str -> array.add(Word(-1, str, str.length)) }
+        val stopTime = System.currentTimeMillis() - startTime
+        println("Function was done while: $stopTime")
+        println(array[1])
+        repository.saveAll(array)
+    }
     fun getById(id:Long) = repository.findOneById(id)
     fun checkExistWord(word:String):Boolean = repository.existsWordByWord(word)
     fun getSize():String {

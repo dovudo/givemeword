@@ -9,20 +9,8 @@ import prod.givemeaword.Service.wordsService
 import java.io.File
 
 @SpringBootApplication
-class GivemeawordApplication {
+class GivemeawordApplication
 
-    private val log = LoggerFactory.getLogger("Service")
-
-    /*@Bean
-    fun init(service:wordsService) =CommandLineRunner {
-        val bufferReader = File(file).bufferedReader()
-        bufferReader.useLines { lines -> lines.forEach {
-            println(it)
-            service.add(it) } }
-        log.debug("Done")
-    }*/
-
-}
 fun main(args: Array<String>) {
     runApplication<GivemeawordApplication>(*args)
 }
