@@ -1,11 +1,13 @@
 package prod.givemeaword.Repostitory
 
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 import prod.givemeaword.ModelBase.Word
 
-interface wordsRepository: CrudRepository<Word,Long> {
+@Repository
+interface WordsRepository: JpaRepository<Word, Long> {
 
-    fun save(wordsMoldel: Word)
+    fun save(word: Word)
     fun findByLength(length:Int):Iterable<Word>
     fun existsWordByWord(word:String):Boolean
     fun getAllByIdAfter(id: Long):Iterable<Word>

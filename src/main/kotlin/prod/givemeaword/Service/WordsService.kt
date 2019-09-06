@@ -1,23 +1,31 @@
 package prod.givemeaword.Service
 
+import io.micrometer.core.annotation.Timed
+import org.hibernate.query.criteria.internal.expression.function.CurrentTimeFunction
 import org.springframework.stereotype.Service
 import prod.givemeaword.ModelBase.Word
-import prod.givemeaword.Repostitory.wordsRepository
+import prod.givemeaword.Repostitory.WordsRepository
 @Service
-class wordsService(private val repository: wordsRepository){
+class WordsService(private val repository: WordsRepository){
 
     /*
     * @return true if word was added
     * @return false if word was passed
     * */
+    val time:TimeMath = TimeMath()
+    @Timed
     fun add(word:String):Boolean{
+        time.start()
         return if(!checkExistWord(word)) {
-            val newWord = Word(-1, word, word.length)
-            repository.save(newWord)
+                repository.save(Word(-1, word, word.length))
+                time.stop()
             true
-        }
-        else
+            }
+            else{
+            time.stop()
             false
+        }
+
     }
     fun getByLength(length:Int):List<String> {
         val list: ArrayList<String> = ArrayList()

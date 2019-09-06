@@ -2,10 +2,9 @@ package prod.givemeaword
 
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
-import prod.givemeaword.Service.wordsService
+import prod.givemeaword.Service.WordsService
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -18,7 +17,7 @@ class GivemeawordApplicationTests  {
 
 }
 
-class TestDAO(private val service:wordsService){
+class TestDAO(private val service:WordsService){
 
     @Test
     fun addingWordTest() {
