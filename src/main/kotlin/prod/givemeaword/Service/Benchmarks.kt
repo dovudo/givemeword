@@ -7,9 +7,11 @@ class Benchmark(name: String) {
     private val log: Logger = LoggerFactory.getLogger("Benchmark")
     private var startTime:Long = 0
     private var className:String = name
+    private var descriptionTest:String = "Somewhere"
 
-
-    fun start() = run { startTime = System.currentTimeMillis() }
+    fun start(description:String) {
+        descriptionTest = description
+        startTime = System.currentTimeMillis() }
     fun stop() {
-        log.warn("$className done while: " + (System.currentTimeMillis() - startTime).toString()+ "ms")}
+        log.warn("$descriptionTest done while: " + (System.currentTimeMillis() - startTime).toString()+ "ms")}
 }

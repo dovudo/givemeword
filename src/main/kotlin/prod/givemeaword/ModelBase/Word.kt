@@ -7,7 +7,7 @@ import javax.persistence.*
 @Table(name = "words", schema = "public")
 data class Word(
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy=GenerationType.SEQUENCE)
         val id:Long,
         @NotNull
         var word: String,

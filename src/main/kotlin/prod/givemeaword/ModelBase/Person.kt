@@ -9,5 +9,7 @@ data class Person(
         @Id
         @GeneratedValue
         val id: Long,
-        val fullName:String
+        val fullName:String,
+        val firstName:String,
+        val secondName:String
 )

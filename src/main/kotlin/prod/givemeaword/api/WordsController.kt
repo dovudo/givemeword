@@ -16,6 +16,7 @@ class WordsController(private val service: WordsService) {
         }
         return "Invalid Id"
     }
+
     @GetMapping("/word")
     fun getRandomWord():String{
         val size = service.getSize().toInt()
@@ -28,9 +29,9 @@ class WordsController(private val service: WordsService) {
         return service.getByLength(length.toInt())
     }
 
-    @GetMapping("/words/{index}")
-    fun getAllWords(@PathVariable("index")index: String = "0"):String{
-        return service.getAll(index.toLong()).toString()
+    @GetMapping("/words/{size}")
+    fun getCollectionBySize(@PathVariable("size")size: Int):List<String>{
+        return service.getCollectionWordsBySize(size)
     }
 
     @GetMapping("/size")

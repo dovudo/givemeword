@@ -12,6 +12,7 @@ import java.io.InputStream
 class TestApi(private val service: WordsService) {
 
     private val log = LoggerFactory.getLogger("Service")
+
     @GetMapping("/test")
     fun getMessage(): String {
         return "Fuck you testing"
@@ -21,8 +22,8 @@ class TestApi(private val service: WordsService) {
     fun seed(): String {
         val time:Benchmark = Benchmark("Seeding")
         val file = "./google-10000-english-no-swears.txt"
-        //Start banchmark
-        time.start()
+        //Start benchmark
+        time.start("Seeding")
         log.info("Seeding started")
         val stream: InputStream = File(file).inputStream()
         val tmpList = mutableListOf<String>()
