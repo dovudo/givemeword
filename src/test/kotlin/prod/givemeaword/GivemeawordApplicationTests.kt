@@ -2,6 +2,7 @@ package prod.givemeaword
 
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
 import prod.givemeaword.Service.WordsService
@@ -17,12 +18,19 @@ class GivemeawordApplicationTests  {
 
 }
 
-class TestDAO(private val service:WordsService){
+
+@RunWith(SpringRunner::class)
+@SpringBootTest
+class TestDAO {
+
+    @Autowired
+    private lateinit var service:WordsService
 
     @Test
     fun addingWordTest() {
-        val TEST_WORD = "BEorNotToBE"
-        service.add(TEST_WORD)
-        assert(service.checkExistWord(TEST_WORD))
+        val testWord = "BEorNotToBE"
+        service.add(testWord)
+        assert(service.checkExistWord(testWord))
     }
+
 }
