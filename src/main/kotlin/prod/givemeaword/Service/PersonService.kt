@@ -1,10 +1,14 @@
 package prod.givemeaword.Service
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import prod.givemeaword.ModelBase.FirstNames
 import prod.givemeaword.ModelBase.LastNames
+import prod.givemeaword.ModelBase.Persons
 import prod.givemeaword.Repostitory.FirstNameRepository
 import prod.givemeaword.Repostitory.LastNameRepository
+import java.lang.StringBuilder
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -12,6 +16,7 @@ import kotlin.collections.ArrayList
 class PersonService(private val firstNameRepository: FirstNameRepository, private val lastNameRepository: LastNameRepository) {
 
     private val time:Benchmarks = Benchmarks("Service")
+    private val log: Logger = LoggerFactory.getLogger("Person Service")
 
     fun addAllFirstNames(names: List<String>){
         time.start("Adding all first names")
@@ -19,12 +24,6 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
         names.map { str -> array.add(FirstNames(-1, str)) }
         firstNameRepository.saveAll(array)
         time.stop()
-    }
-
-    fun getOneFirstName():String{
-        val rnd: Random = Random()
-        val count = firstNameRepository.count().toInt()
-        return firstNameRepository.getOneById(rnd.nextInt(count) + 1).firstName
     }
 
     fun addAllLastNames(names: List<String>){
@@ -35,10 +34,27 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
         time.stop()
     }
 
-    fun getOneLastName():String{
-        val rnd: Random = Random()
-        val count = lastNameRepository.count().toInt()
-        return lastNameRepository.getOneById(rnd.nextInt(count) + 1).lastName
+    fun getOneFirstName():String{
+        val count = firstNameRepository.count().toInt()
+        val rnd = Random().nextInt(count)
+        log.warn("frist name index: " + rnd.toString())
+        return firstNameRepository.getOneById(rnd).firstName
     }
 
+    fun getOneLastName():String{
+        val count = lastNameRepository.count().toInt()
+        val rnd = Random().nextInt(count)
+        log.warn("last name index: " + rnd.toString())
+        return lastNameRepository.getOneById(rnd).lastName
+    }
+
+    fun getOnePerson():Persons{
+        val firstName = getOneFirstName()
+        val lastName = getOneLastName()
+        val fullName = "$firstName $lastName"
+        return Persons(fullName, firstName, lastName)
+    }
+
+    fun cleanFirstName() = firstNameRepository.deleteAll()
+    fun cleanLastName() = lastNameRepository.deleteAll()
 }

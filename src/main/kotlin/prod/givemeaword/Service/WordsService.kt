@@ -8,7 +8,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @Service
-class WordsService(private val repository: WordsRepository){
+class WordsService(private val repository: WordsRepository) {
 
     private val time:Benchmarks = Benchmarks("Service")
     private val log = LoggerFactory.getLogger("Word")
@@ -36,7 +36,6 @@ class WordsService(private val repository: WordsRepository){
         return list
     }
 
-    fun getAll(id: Long) = repository.getAllByIdAfter(id)
     fun addAll(words: List<String>){
         time.start("Add all fun")
         val array: ArrayList<Word> = ArrayList()
@@ -44,7 +43,6 @@ class WordsService(private val repository: WordsRepository){
         repository.saveAll(array)
         time.stop()
     }
-
     fun getCollectionWordsBySize(sizeOfList:Int):List<String>{
         val sizeOfBase = getSize().toInt()
         val rnd = Random()
@@ -55,6 +53,7 @@ class WordsService(private val repository: WordsRepository){
         return list
     }
 
+    fun getAll(id: Long) = repository.getAllByIdAfter(id)
     fun getById(id:Long) = run {repository.findOneById(id)}
     fun checkExistWord(word:String):Boolean = repository.existsWordByWord(word)
     fun getSize():String = repository.count().toString()
