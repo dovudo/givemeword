@@ -1,8 +1,8 @@
-package prod.givemeaword
+package prod.GiveMeaWord
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import prod.givemeaword.Service.SeedService
+import prod.GiveMeaWord.Service.SeedService
 
 @SpringBootApplication
 class GivemeawordApplication

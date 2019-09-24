@@ -1,10 +1,8 @@
-package prod.givemeaword.Service
+package prod.GiveMeaWord.Service
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.GetMapping
-import prod.givemeaword.api.TestController
 import java.io.File
 import java.io.InputStream
 
@@ -15,12 +13,23 @@ class SeedService {
     lateinit var personService:PersonService
     @Autowired
     lateinit var wordsService: WordsService
-    private val log = LoggerFactory.getLogger("Service")
+
+    private val log = LoggerFactory.getLogger("Seed service")
     private val time:Benchmarks = Benchmarks("Seeding class")
 
+    //Paths to seeding files
+    private val wordsDirFile = "./google-10000-english-no-swears.txt"
+    private val firstNameDirFile = "./first-names.txt"
+    private val lastNameDirFile = "./last-names.txt"
 
+    /*
+    * Words seeding function
+    * Clean the database and seed it from file
+    * @return Count of added WORDS
+    * For tests benchmark looking and print the time of seeding
+    * */
     fun wordSeed(): String {
-        val file = "./google-10000-english-no-swears.txt"
+        val file = wordsDirFile
         //Start benchmark
         time.start("Seeding")
         val stream: InputStream = File(file).inputStream()
@@ -35,8 +44,14 @@ class SeedService {
         return "Seeding done! \n Added words: $addCounter "
     }
 
+    /*
+    First name seeding function
+    * Clean the database and seed it from file
+    * @return Count of added FIRST NAMES
+    * For tests benchmark looking and print the time of seeding
+    * */
     fun firstNameSeed(): String{
-        val file = "./first-names.txt"
+        val file = firstNameDirFile
         val stream: InputStream = File(file).inputStream()
         val firstNameList = mutableListOf<String>()
         log.info("Cleaning first name database")
@@ -46,8 +61,14 @@ class SeedService {
         return """Was added first names of ${firstNameList.size}"""
     }
 
+    /*
+    * last name seeding function
+    * Clean the database and seed it from file
+    * @return Count of added LAST NAMES
+    * For tests benchmark looking and print the time of seeding
+    * */
     fun lastNameSeed(): String{
-        val file = "./last-names.txt"
+        val file = lastNameDirFile
         val stream: InputStream = File(file).inputStream()
         val lastNameList = mutableListOf<String>()
         log.info("Cleaning last name database")

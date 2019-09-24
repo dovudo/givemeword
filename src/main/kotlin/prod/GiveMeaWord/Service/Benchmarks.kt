@@ -1,8 +1,15 @@
-package prod.givemeaword.Service
+package prod.GiveMeaWord.Service
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+/*
+* Test size
+* Special class for count the time
+* how much some functions take a time for doing
+* @param name of function or class for log
+*
+*/
 class Benchmarks(name: String) {
     private val log: Logger = LoggerFactory.getLogger("Benchmark")
     private var startTime:Long = 0

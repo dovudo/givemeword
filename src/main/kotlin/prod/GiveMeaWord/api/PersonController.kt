@@ -1,13 +1,13 @@
-package prod.givemeaword.api
+package prod.GiveMeaWord.api
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
-import prod.givemeaword.ModelBase.LastNames
-import prod.givemeaword.ModelBase.Persons
-import prod.givemeaword.Repostitory.LastNameRepository
-import prod.givemeaword.Service.PersonService
+import prod.GiveMeaWord.ModelBase.LastNames
+import prod.GiveMeaWord.ModelBase.Persons
+import prod.GiveMeaWord.Repostitory.LastNameRepository
+import prod.GiveMeaWord.Service.PersonService
 
 @RestController("person")
 class PersonController(private val service:PersonService) {

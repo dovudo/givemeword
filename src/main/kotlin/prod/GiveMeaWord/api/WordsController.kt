@@ -1,14 +1,15 @@
-package prod.givemeaword.api
+package prod.GiveMeaWord.api
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
-import prod.givemeaword.Service.WordsService
+import prod.GiveMeaWord.Service.WordsService
 import java.util.*
 
 @RestController
 class WordsController(private val service: WordsService) {
 
+    //should be removed
     @GetMapping("/word/id/{id}")
     fun getWordByIndex(@PathVariable("id") id: String): String {
         id.toLongOrNull()?.let {
@@ -24,7 +25,7 @@ class WordsController(private val service: WordsService) {
         return service.getById((rnd.nextInt(size).toLong())).word
     }
 
-    @GetMapping("/word/length/{l}")
+    @GetMapping("/words/length/{l}")
     fun getWordByLength(@PathVariable("l") length:String): List<String>{
         return service.getByLength(length.toInt())
     }

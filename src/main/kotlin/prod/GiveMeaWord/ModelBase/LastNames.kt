@@ -1,14 +1,13 @@
-package prod.givemeaword.ModelBase
+package prod.GiveMeaWord.ModelBase
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-data class FirstNames(
+data class LastNames(
         @Id
         @GeneratedValue
         val id:Int,
-        val firstName:String
+        val lastName:String
 )

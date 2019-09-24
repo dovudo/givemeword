@@ -1,9 +1,8 @@
-package prod.givemeaword.Repostitory
+package prod.GiveMeaWord.Repostitory
 
-import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
-import prod.givemeaword.ModelBase.Word
+import prod.GiveMeaWord.ModelBase.Word
 
 @Repository
 interface WordsRepository: CrudRepository<Word, Long> {

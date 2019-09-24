@@ -1,8 +1,8 @@
-package prod.givemeaword.Repostitory
+package prod.GiveMeaWord.Repostitory
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
-import prod.givemeaword.ModelBase.FirstNames
+import prod.GiveMeaWord.ModelBase.FirstNames
 
 @Repository
 interface FirstNameRepository: CrudRepository<FirstNames,Int>{

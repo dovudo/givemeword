@@ -1,4 +1,4 @@
-package prod.givemeaword.ModelBase
+package prod.GiveMeaWord.ModelBase
 
 import org.jetbrains.annotations.NotNull
 import javax.persistence.*

@@ -1,12 +1,8 @@
-package prod.givemeaword.api
+package prod.GiveMeaWord.api
 
-import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import prod.givemeaword.Service.*
-import java.io.File
-import java.io.InputStream
+import prod.GiveMeaWord.Service.*
 
 @RestController
 class TestController(private val seed:SeedService) {

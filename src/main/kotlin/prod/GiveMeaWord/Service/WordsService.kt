@@ -1,9 +1,9 @@
-package prod.givemeaword.Service
+package prod.GiveMeaWord.Service
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import prod.givemeaword.ModelBase.Word
-import prod.givemeaword.Repostitory.WordsRepository
+import prod.GiveMeaWord.ModelBase.Word
+import prod.GiveMeaWord.Repostitory.WordsRepository
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -14,6 +14,8 @@ class WordsService(private val repository: WordsRepository) {
     private val log = LoggerFactory.getLogger("Word")
 
     /*
+    Adding one word function to database
+    @param String of new word
   * @return true if word was added
   * @return false if word was passed
   * */
@@ -30,12 +32,23 @@ class WordsService(private val repository: WordsRepository) {
         }
     }
 
+    /*
+    * Getting list of words by word length
+    * Give all words which would found
+    * @param Int of words length
+    * @return List of found words by length
+    *  */
     fun getByLength(length:Int):List<String> {
         val list: ArrayList<String> = ArrayList()
         repository.findByLength(length).map { list.add(it.word) }
         return list
     }
 
+    /*
+    * Function for seeding
+    * Add all words in one transaction
+    * @param List of words
+    * */
     fun addAll(words: List<String>){
         time.start("Add all fun")
         val array: ArrayList<Word> = ArrayList()
@@ -43,6 +56,12 @@ class WordsService(private val repository: WordsRepository) {
         repository.saveAll(array)
         time.stop()
     }
+
+    /*
+    * Getting sized list of random worlds
+    * @param size of list
+    * @return List of random words
+    * */
     fun getCollectionWordsBySize(sizeOfList:Int):List<String>{
         val sizeOfBase = getSize().toInt()
         val rnd = Random()
@@ -53,6 +72,9 @@ class WordsService(private val repository: WordsRepository) {
         return list
     }
 
+    /*
+    * Support functions
+    * */
     fun getAll(id: Long) = repository.getAllByIdAfter(id)
     fun getById(id:Long) = run {repository.findOneById(id)}
     fun checkExistWord(word:String):Boolean = repository.existsWordByWord(word)

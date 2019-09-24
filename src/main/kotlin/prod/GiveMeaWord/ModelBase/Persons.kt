@@ -1,4 +1,4 @@
-package prod.givemeaword.ModelBase
+package prod.GiveMeaWord.ModelBase
 
 data class Persons(
         val fullName:String,
