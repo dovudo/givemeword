@@ -63,11 +63,11 @@ class WordsService(private val repository: WordsRepository) {
     * @return List of random words
     * */
     fun getCollectionWordsBySize(sizeOfList:Int):List<String>{
-        val sizeOfBase = getSize().toInt()
+        val sizeOfBase = getSize()
         val rnd = Random()
         val list = ArrayList<String>()
         for(i in 0 until sizeOfList){
-            list.add(getById((rnd.nextInt(sizeOfBase).toLong() + 1)).word)
+            list.add(getById((rnd.nextInt(sizeOfBase) + 1)).word)
         }
         return list
     }
@@ -75,10 +75,10 @@ class WordsService(private val repository: WordsRepository) {
     /*
     * Support functions
     * */
-    fun getAll(id: Long) = repository.getAllByIdAfter(id)
-    fun getById(id:Long) = run {repository.findOneById(id)}
+    fun getAll(id: Int) = repository.getAllByIdAfter(id)
+    fun getById(id:Int) = run {repository.findOneById(id)}
     fun checkExistWord(word:String):Boolean = repository.existsWordByWord(word)
-    fun getSize():String = repository.count().toString()
+    fun getSize():Int = repository.count().toInt()
     fun deleteAll():String{
         val count = getSize()
         repository.deleteAll()

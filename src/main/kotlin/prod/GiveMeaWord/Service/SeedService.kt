@@ -73,7 +73,7 @@ class SeedService {
         val lastNameList = mutableListOf<String>()
         log.info("Cleaning last name database")
         personService.cleanLastName()
-        stream.bufferedReader().forEachLine { s -> lastNameList.add(s.toLowerCase())}
+        lastNameList.addAll(stream.bufferedReader().use { it.readLines() })
         personService.addAllLastNames(lastNameList)
         return """Was added first names of ${lastNameList.size}"""
     }

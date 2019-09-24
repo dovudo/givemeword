@@ -49,8 +49,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * */
     fun getOneFirstName():String{
         val count = firstNameRepository.count().toInt()
-        val rnd = Random().nextInt(count)
-        log.warn("frist name index: " + rnd.toString())
+        val rnd = Random().nextInt(count) + 1
         return firstNameRepository.getOneById(rnd).firstName
     }
 
@@ -60,8 +59,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * */
     fun getOneLastName():String{
         val count = lastNameRepository.count().toInt()
-        val rnd = Random().nextInt(count)
-        log.warn("last name index: " + rnd.toString())
+        val rnd = Random().nextInt(count) + 1
         return lastNameRepository.getOneById(rnd).lastName
     }
 
@@ -76,6 +74,20 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
         val lastName = getOneLastName()
         val fullName = "$firstName $lastName"
         return Persons(fullName, firstName, lastName)
+    }
+
+    /*
+    * Give a list of persons
+    * by getOnePerson function
+    * @param size of list
+    * @return list of persons
+    * */
+    fun getPersonsList(size:Int):List<Persons>{
+        val list:ArrayList<Persons> = ArrayList()
+        for(i in 0 until size){
+            list.add(getOnePerson())
+        }
+        return list
     }
 
     /*

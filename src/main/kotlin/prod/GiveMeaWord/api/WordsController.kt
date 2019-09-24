@@ -12,7 +12,7 @@ class WordsController(private val service: WordsService) {
     //should be removed
     @GetMapping("/word/id/{id}")
     fun getWordByIndex(@PathVariable("id") id: String): String {
-        id.toLongOrNull()?.let {
+        id.toIntOrNull()?.let {
             return service.getById(it).word
         }
         return "Invalid Id"
@@ -20,9 +20,9 @@ class WordsController(private val service: WordsService) {
 
     @GetMapping("/word")
     fun getRandomWord():String{
-        val size = service.getSize().toInt()
+        val size = service.getSize()
         val rnd = Random()
-        return service.getById((rnd.nextInt(size).toLong())).word
+        return service.getById((rnd.nextInt(size))).word
     }
 
     @GetMapping("/words/length/{l}")
