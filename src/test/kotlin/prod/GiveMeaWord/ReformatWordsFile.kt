@@ -9,7 +9,6 @@ class ReformatWordsFile {
     val readFile = ""
     val writeFile = ""
 
-    @Test
     fun refToCorrectSyntax(){
         val stream: InputStream = File(readFile).inputStream()
         val outStream: BufferedWriter = File(writeFile).bufferedWriter()

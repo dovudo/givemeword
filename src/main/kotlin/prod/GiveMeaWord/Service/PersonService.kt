@@ -8,7 +8,7 @@ import prod.GiveMeaWord.ModelBase.LastNames
 import prod.GiveMeaWord.ModelBase.Persons
 import prod.GiveMeaWord.Repostitory.FirstNameRepository
 import prod.GiveMeaWord.Repostitory.LastNameRepository
-import java.util.*
+import java.util.Random
 import kotlin.collections.ArrayList
 
 @Service
@@ -49,7 +49,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * */
     fun getOneFirstName():String{
         val count = firstNameRepository.count().toInt()
-        val rnd = Random().nextInt(count) + 1
+        val rnd:Int = Random().nextInt(count)
         return firstNameRepository.getOneById(rnd).firstName
     }
 
@@ -59,7 +59,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * */
     fun getOneLastName():String{
         val count = lastNameRepository.count().toInt()
-        val rnd = Random().nextInt(count) + 1
+        val rnd = Random().nextInt(count)
         return lastNameRepository.getOneById(rnd).lastName
     }
 

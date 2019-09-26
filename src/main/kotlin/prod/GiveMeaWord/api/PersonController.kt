@@ -13,13 +13,6 @@ import prod.GiveMeaWord.Service.PersonService
 @RequestMapping("person")
 class PersonController(private val service:PersonService) {
 
-/*
-    @Autowired
-    lateinit var lastNamesRepository: LastNameRepository
-    @Autowired
-    lateinit var firstNameRepository: FirstNameRepository
-*/
-
     @GetMapping("/firstname")
     fun getOneFirstName():String = service.getOneFirstName()
 
@@ -32,13 +25,4 @@ class PersonController(private val service:PersonService) {
     @GetMapping("{size}")
     fun getPersonsList(@PathVariable size:String):List<Persons> = service.getPersonsList(size.toInt())
 
-  /*  @GetMapping("getLastById/{id}")
-    fun getOneLastById(@PathVariable("id") id:String): LastNames {
-        return lastNamesRepository.getOneById(id.toInt())
-    }
-
-    @GetMapping("getFirstById/{id}")
-    fun getOneFirstById(@PathVariable("id") id:String): FirstNames {
-        return firstNameRepository.getOneById(id.toInt())
-    }*/
 }

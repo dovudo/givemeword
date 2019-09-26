@@ -19,8 +19,8 @@ class SeedService {
 
     //Paths to seeding files
     private val wordsDirFile = "./google-10000-english-no-swears.txt"
-    private val firstNameDirFile = "./first-names.txt"
-    private val lastNameDirFile = "./last-names.txt"
+    private val firstNameDirFile = "./src/main/resources/static/first-names.txt"
+    private val lastNameDirFile = "./src/main/resources/static/last-names.txt"
 
     /*
     * Words seeding function
