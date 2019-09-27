@@ -1,6 +1,7 @@
 package prod.GiveMeaWord.Service
 
 import org.slf4j.LoggerFactory
+import org.springframework.http.codec.json.Jackson2JsonEncoder
 import org.springframework.stereotype.Service
 import prod.GiveMeaWord.ModelBase.Word
 import prod.GiveMeaWord.Repostitory.WordsRepository

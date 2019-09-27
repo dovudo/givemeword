@@ -20,8 +20,10 @@ class TestController(private val seed:SeedService) {
     fun lastNameSeed() = seed.lastNameSeed()
 
     @GetMapping("/person/seed")
-    fun seed(){
-        seed.firstNameSeed()
-        seed.lastNameSeed()
+    fun seed():String{
+        var outStr:String = ""
+        outStr += seed.firstNameSeed()
+        outStr += seed.lastNameSeed()
+        return outStr
     }
 }

@@ -18,7 +18,7 @@ class SeedService {
     private val time:Benchmarks = Benchmarks("Seeding class")
 
     //Paths to seeding files
-    private val wordsDirFile = "./google-10000-english-no-swears.txt"
+    private val wordsDirFile = "./src/main/resources/static/google-10000-english-no-swears.txt"
     private val firstNameDirFile = "./src/main/resources/static/first-names.txt"
     private val lastNameDirFile = "./src/main/resources/static/last-names.txt"
 
@@ -58,7 +58,7 @@ class SeedService {
         personService.cleanFirstName()
         firstNameList.addAll(stream.bufferedReader().use { it.readLines() })
         personService.addAllFirstNames(firstNameList)
-        return """Was added first names of ${firstNameList.size}"""
+        return "Was added first names of ${firstNameList.size} \n"
     }
 
     /*
@@ -75,6 +75,6 @@ class SeedService {
         personService.cleanLastName()
         lastNameList.addAll(stream.bufferedReader().use { it.readLines() })
         personService.addAllLastNames(lastNameList)
-        return """Was added first names of ${lastNameList.size}"""
+        return "Was added first names of ${lastNameList.size} \n"
     }
 }

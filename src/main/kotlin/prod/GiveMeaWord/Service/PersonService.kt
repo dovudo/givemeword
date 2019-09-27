@@ -8,7 +8,7 @@ import prod.GiveMeaWord.ModelBase.LastNames
 import prod.GiveMeaWord.ModelBase.Persons
 import prod.GiveMeaWord.Repostitory.FirstNameRepository
 import prod.GiveMeaWord.Repostitory.LastNameRepository
-import java.util.Random
+import java.util.*
 import kotlin.collections.ArrayList
 
 @Service
@@ -82,7 +82,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * @param size of list
     * @return list of persons
     * */
-    fun getPersonsList(size:Int):List<Persons>{
+    fun getPersonsList(size:Int): List<Persons> {
         val list:ArrayList<Persons> = ArrayList()
         for(i in 0 until size){
             list.add(getOnePerson())
