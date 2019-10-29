@@ -41,7 +41,7 @@ class SeedService {
         time.stop()
         log.debug("Seeding Done")
         val addCounter = tmpList.size
-        return "Seeding done! \n Added words: $addCounter "
+        return "Seeding done! \n Added words: $addCounter \n"
     }
 
     /*

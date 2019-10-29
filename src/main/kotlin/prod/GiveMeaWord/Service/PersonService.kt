@@ -8,8 +8,8 @@ import prod.GiveMeaWord.ModelBase.LastNames
 import prod.GiveMeaWord.ModelBase.Persons
 import prod.GiveMeaWord.Repostitory.FirstNameRepository
 import prod.GiveMeaWord.Repostitory.LastNameRepository
-import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 @Service
 class PersonService(private val firstNameRepository: FirstNameRepository, private val lastNameRepository: LastNameRepository) {
@@ -49,7 +49,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * */
     fun getOneFirstName():String{
         val count = firstNameRepository.count().toInt()
-        val rnd:Int = Random().nextInt(count)
+        val rnd:Int = (1..count).random()
         return firstNameRepository.getOneById(rnd).firstName
     }
 
@@ -59,7 +59,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * */
     fun getOneLastName():String{
         val count = lastNameRepository.count().toInt()
-        val rnd = Random().nextInt(count)
+        val rnd = (1..count).random()
         return lastNameRepository.getOneById(rnd).lastName
     }
 

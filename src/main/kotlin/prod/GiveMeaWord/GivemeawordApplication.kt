@@ -25,8 +25,8 @@ class MRunner: CommandLineRunner{
     @Autowired
     lateinit var seed: SeedService
     override fun run(args: Array<String>){
-        sleep(3000)
         seed.firstNameSeed()
         seed.lastNameSeed()
+        seed.wordSeed()
     }
 }

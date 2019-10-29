@@ -33,4 +33,10 @@ class TestDAO {
         assert(service.checkExistWord(testWord))
     }
 
+    @Test
+    fun Lera(){
+        while(true){
+            println("ЛЕРА ПРОСТО КОСМОС")
+        }
+    }
 }
