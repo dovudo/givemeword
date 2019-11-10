@@ -6,6 +6,7 @@ import prod.GiveMeaWord.ModelBase.LastNames
 
 @Repository
 interface LastNameRepository: CrudRepository<LastNames,Int> {
+
     fun save(name:LastNames)
     fun getOneById(id:Int):LastNames
 }
