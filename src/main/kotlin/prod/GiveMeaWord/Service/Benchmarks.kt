@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory
 * @param name of function or class for log
 *
 */
-class Benchmarks(name: String) {
-    private val log: Logger = LoggerFactory.getLogger("Benchmark")
+class Benchmarks(name: String = "Benchmark") {
+
+    private val log: Logger = LoggerFactory.getLogger(name)
     private var startTime:Long = 0
-    private var className:String = name
-    private var descriptionTest:String = "Somewhere"
+    private var descriptionTest:String = "Somewhere in code"
 
     fun start(description:String) {
         descriptionTest = description

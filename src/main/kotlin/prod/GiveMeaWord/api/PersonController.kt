@@ -1,12 +1,10 @@
 package prod.GiveMeaWord.api
 
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.*
-import prod.GiveMeaWord.ModelBase.FirstNames
-import prod.GiveMeaWord.ModelBase.LastNames
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 import prod.GiveMeaWord.ModelBase.Persons
-import prod.GiveMeaWord.Repostitory.FirstNameRepository
-import prod.GiveMeaWord.Repostitory.LastNameRepository
 import prod.GiveMeaWord.Service.PersonService
 
 @RestController
@@ -23,6 +21,6 @@ class PersonController(private val service:PersonService) {
     fun getOnePerson():Persons = service.getOnePerson()
 
     @GetMapping("{size}")
-    fun getPersonsList(@PathVariable size:String):List<Persons> = service.getPersonsList(size.toInt())
+    fun getPersonsList(@PathVariable size:String) = service.getPersonsList(size.toInt())
 
 }

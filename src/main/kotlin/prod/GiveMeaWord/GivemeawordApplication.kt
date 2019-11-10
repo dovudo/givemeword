@@ -19,9 +19,9 @@ fun main(args: Array<String>) {
 @Component
 class MRunner: CommandLineRunner{
 
-    /*
+/*
     Auto seeding on run
-    * */
+*/
     @Autowired
     lateinit var seed: SeedService
     override fun run(args: Array<String>){
