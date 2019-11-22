@@ -2,10 +2,17 @@ package prod.GiveMeaWord.api
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
+import prod.GiveMeaWord.Repostitory.LogRepository
 import prod.GiveMeaWord.Service.*
+import java.io.BufferedReader
+import java.io.File
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.lang.StringBuilder
+import javax.servlet.http.HttpServletRequest
 
 @RestController
-class TestController(private val seed:SeedService) {
+class TestController(private val seed:SeedService, private val logRepository: LogRepository) {
 
     @GetMapping("/test")
     fun getMessage() = "Server is up"
@@ -26,4 +33,13 @@ class TestController(private val seed:SeedService) {
         outStr += seed.lastNameSeed()
         return outStr
     }
+
+    @GetMapping("/hr")
+    fun getHumanRights():String{
+        val stream = File("./src/main/resources/static/HumanRights").bufferedReader()
+        return stream.readText()
+    }
+
+    @GetMapping("/test/ip")
+    fun getIpList(servlet: HttpServletRequest) = logRepository.findAll()
 }

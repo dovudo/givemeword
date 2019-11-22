@@ -25,6 +25,4 @@ class ErrorResponse{
         msg = clientMsg
         debugMsg = clientDebug
     }
-
-
 }
