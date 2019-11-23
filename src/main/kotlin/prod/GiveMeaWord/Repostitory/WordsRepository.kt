@@ -14,4 +14,5 @@ interface WordsRepository: CrudRepository<Word, Int> {
     fun findOneById(id: Int):Word
     override fun count():Long
     override fun deleteAll()
+
 }
