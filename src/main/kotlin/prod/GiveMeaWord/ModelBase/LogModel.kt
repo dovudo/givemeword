@@ -1,8 +1,6 @@
 package prod.GiveMeaWord.ModelBase
 
 import com.fasterxml.jackson.annotation.JsonFormat
-import java.net.http.HttpHeaders
-import java.net.http.HttpRequest
 import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
