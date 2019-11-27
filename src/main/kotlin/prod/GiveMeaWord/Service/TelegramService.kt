@@ -1,19 +1,19 @@
 package prod.GiveMeaWord.Service
 
 import io.github.rybalkinsd.kohttp.dsl.httpPost
-import io.github.rybalkinsd.kohttp.util.json
 import okhttp3.Response
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
 @Service
-class NumberService {
+class TelegramService {
 
     private val log = LoggerFactory.getLogger(this::class.java)
-    private val telegramToken = "930792868:AAGZvnBCVgnE0tNQ1MOHw5Fy8UJFQHtmnrI"
-    private val chatId = "206498046"
+    private val  telegramToken:String = "\"930792868:AAGZvnBCVgnE0tNQ1MOHw5Fy8UJFQHtmnrI\""
+    private val chatId: String = "206498046"
 
-    fun sendToUser(textToSend:String):Response {
+    fun sendText(textToSend:String):Response {
         val req = httpPost {
             host = "api.telegram.org"
             scheme = "https"
@@ -26,7 +26,7 @@ class NumberService {
                 }
             }
         }.use {
-            log.info("Sending massage to Telegram bot: ${it.toString()}")
+            log.info("Sending massage to Telegram bot: $it")
             return it
         }
     }

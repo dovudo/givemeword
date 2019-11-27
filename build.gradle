@@ -10,20 +10,12 @@ plugins {
 group "prod"
 version "0.0.1-SNAPSHOT"
 
-/*sourceCompatibility = JavaVersion.VERSION_1_8
-developmentOnly = configurations.creating
-
-configurations {
-    runtimeClasspath {
-        extendsFrom(developmentOnly)
-    }
-}*/
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation ('io.github.rybalkinsd:kohttp:0.11.1')
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
