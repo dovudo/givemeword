@@ -2,12 +2,9 @@ package prod.GiveMeaWord.Service
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import org.springframework.web.servlet.HandlerInterceptor
-import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter
 import prod.GiveMeaWord.ModelBase.LogModel
 import prod.GiveMeaWord.Repostitory.LogRepository
-import java.lang.Exception
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -17,9 +14,12 @@ class Interceptor(private val logRepository:LogRepository): HandlerInterceptorAd
     val log = LoggerFactory.getLogger(this::class.java)
 
     override fun afterCompletion(request: HttpServletRequest, response: HttpServletResponse, handler: Any, ex: Exception?) {
-        log.warn("User: ${request.getHeader("User-Agent")} \n Address: ${request.remoteAddr}")
+
+        val UserInfo = "User: ${request.getHeader("User-Agent")} \n Address: ${request.remoteAddr}"
+        log.info(UserInfo)
         logRepository.save(LogModel(-1, request.remoteAddr, request.getHeader("User-Agent")))
+        //Sending to Telegram
+        TelegramService().sendText(UserInfo)
         super.afterCompletion(request, response, handler, ex)
     }
-
 }

@@ -37,7 +37,7 @@ class TestController(private val seed:SeedService, private val logRepository: Lo
     @GetMapping("/hr")
     fun getHumanRights():String{
         val stream = File("./src/main/resources/static/HumanRights").bufferedReader()
-        return stream.readText()
+       return stream.readText()
     }
 
     @GetMapping("/test/ip")
