@@ -9,17 +9,24 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Component
-class Interceptor(private val logRepository:LogRepository): HandlerInterceptorAdapter() {
+class Interceptor(private val logRepository:LogRepository, private val telegramService: TelegramService): HandlerInterceptorAdapter() {
 
     val log = LoggerFactory.getLogger(this::class.java)
 
     override fun afterCompletion(request: HttpServletRequest, response: HttpServletResponse, handler: Any, ex: Exception?) {
 
-        val UserInfo = "User: ${request.getHeader("User-Agent")} \n Address: ${request.remoteAddr}"
-        log.info(UserInfo)
-        logRepository.save(LogModel(-1, request.remoteAddr, request.getHeader("User-Agent")))
-        //Sending to Telegram
-        TelegramService().sendText(UserInfo)
+        /*
+        Ignore that route for wakeup function
+        And does't write every request while getting ip list
+         */
+        if(request.requestURI == "/test/ip")
+            return
+
+        val userInfo = "User: ${request.getHeader("User-Agent")} \n Address: ${request.remoteAddr} \n Path: ${request.requestURI}"
+        log.info(userInfo)
+        logRepository.save(LogModel(-1, request.remoteAddr, request.getHeader("User-Agent"), request.requestURI))
+        //Sending logs to Telegram
+        telegramService.sendText(userInfo)
         super.afterCompletion(request, response, handler, ex)
     }
 }

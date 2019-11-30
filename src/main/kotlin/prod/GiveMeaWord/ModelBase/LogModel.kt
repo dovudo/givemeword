@@ -14,6 +14,7 @@ data class LogModel (
         val id:Int,
         val ip:String,
         val header: String,
+        val path: String,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
         val timestamp: LocalDateTime? =  LocalDateTime.now()
 )
