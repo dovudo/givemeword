@@ -1,8 +1,6 @@
 package prod.GiveMeaWord.ModelBase
 
 import com.fasterxml.jackson.annotation.JsonFormat
-import java.net.http.HttpHeaders
-import java.net.http.HttpRequest
 import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -16,6 +14,7 @@ data class LogModel (
         val id:Int,
         val ip:String,
         val header: String,
+        val path: String,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
         val timestamp: LocalDateTime? =  LocalDateTime.now()
 )

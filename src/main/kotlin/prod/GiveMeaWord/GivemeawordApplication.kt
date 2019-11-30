@@ -7,6 +7,7 @@ import org.springframework.boot.runApplication
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import prod.GiveMeaWord.Service.HerokuService
 import prod.GiveMeaWord.Service.Interceptor
 import prod.GiveMeaWord.Service.SeedService
 
@@ -29,9 +30,11 @@ class MRunnerAndConfigurer: CommandLineRunner, WebMvcConfigurer{
     lateinit var myInterceptor: Interceptor
 
     override fun run(args: Array<String>){
-        seed.firstNameSeed()
-        seed.lastNameSeed()
-        seed.wordSeed()
+        //seed.firstNameSeed()
+        //seed.lastNameSeed()
+        //seed.wordSeed()
+        HerokuService().wakeUp()
+        println("After running")
     }
 
     override fun addInterceptors(registry: InterceptorRegistry) {

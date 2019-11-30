@@ -20,5 +20,5 @@ class Benchmarks(name: String = "Benchmark") {
         descriptionTest = description
         startTime = System.currentTimeMillis() }
     fun stop() {
-        log.warn("$descriptionTest done while: " + (System.currentTimeMillis() - startTime).toString()+ "ms")}
+        log.warn("$descriptionTest done while: " + (System.currentTimeMillis() - startTime).toString()+ "mos")}
 }
