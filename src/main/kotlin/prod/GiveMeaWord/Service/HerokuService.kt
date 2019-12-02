@@ -4,23 +4,24 @@ import io.github.rybalkinsd.kohttp.dsl.httpGet
 import java.lang.Thread.sleep
 
 
-class HerokuService{
+class HerokuService {
 
-
-    private var wait: Long = 480000
+    private var waitTime: Long = 480000
     private var isWorking = true
 
     fun wakeUp() {
-            while (isWorking) {
-                sleep(wait)
-                 httpGet {
-                    host = "localhost"
-                     //TODO change that port
-                     port = 8080
-                     path = "/ip"
-                 }
+        while (isWorking) {
+            println("Hey, wake up now!")
+            sleep(waitTime)
+            httpGet {
+                host = "localhost"
+                port = 80
+                path = "/test/ip"
             }
+        }
     }
 
-    fun stop() {isWorking = false}
+    fun stop() {
+        isWorking = false
+    }
 }

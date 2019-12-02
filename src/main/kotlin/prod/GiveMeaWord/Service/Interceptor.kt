@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Component
-class Interceptor(private val logRepository:LogRepository, private val telegramService: TelegramService): HandlerInterceptorAdapter() {
+class Interceptor(private val logRepository: LogRepository, private val telegramService: TelegramService) : HandlerInterceptorAdapter() {
 
-    val log = LoggerFactory.getLogger(this::class.java)
+    val log = LoggerFactory.getLogger(this::class.java)!!
 
     override fun afterCompletion(request: HttpServletRequest, response: HttpServletResponse, handler: Any, ex: Exception?) {
 
@@ -19,7 +19,7 @@ class Interceptor(private val logRepository:LogRepository, private val telegramS
         Ignore that route for wakeup function
         And does't write every request while getting ip list
          */
-        if(request.requestURI == "/test/ip")
+        if (request.requestURI == "/test/ip")
             return
 
         val userInfo = "User: ${request.getHeader("User-Agent")} \n Address: ${request.remoteAddr} \n Path: ${request.requestURI}"

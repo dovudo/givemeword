@@ -8,13 +8,11 @@ import prod.GiveMeaWord.ModelBase.LastNames
 import prod.GiveMeaWord.ModelBase.Persons
 import prod.GiveMeaWord.Repostitory.FirstNameRepository
 import prod.GiveMeaWord.Repostitory.LastNameRepository
-import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 @Service
 class PersonService(private val firstNameRepository: FirstNameRepository, private val lastNameRepository: LastNameRepository) {
 
-    private val time:Benchmarks = Benchmarks("Service")
+    private val time: Benchmarks = Benchmarks("Service")
     private val log: Logger = LoggerFactory.getLogger("Person Service")
 
     /*
@@ -22,7 +20,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * to database through Crud repository
     * and count the time while it worked
     * */
-    fun addAllFirstNames(names: List<String>){
+    fun addAllFirstNames(names: List<String>) {
         time.start("Adding all first names")
         val array: ArrayList<FirstNames> = ArrayList()
         names.map { str -> array.add(FirstNames(-1, str)) }
@@ -35,7 +33,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
    * to database through Crud repository
    * and count the time while it worked
    * */
-    fun addAllLastNames(names: List<String>){
+    fun addAllLastNames(names: List<String>) {
         time.start("Adding all last names")
         val array: ArrayList<LastNames> = ArrayList()
         names.map { str -> array.add(LastNames(-1, str)) }
@@ -47,9 +45,9 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     Getting random first name from data base
     * @return first name: String
     * */
-    fun getOneFirstName():String{
+    fun getOneFirstName(): String {
         val count = firstNameRepository.count().toInt()
-        val rnd:Int = (1..count).random()
+        val rnd: Int = (1..count).random()
         return firstNameRepository.getOneById(rnd).firstName
     }
 
@@ -57,7 +55,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * Getting random last name form database
     * @return last name: String
     * */
-    fun getOneLastName():String{
+    fun getOneLastName(): String {
         val count = lastNameRepository.count().toInt()
         val rnd = (1..count).random()
         return lastNameRepository.getOneById(rnd).lastName
@@ -69,7 +67,7 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * create the Person model
     * @return Person model with random first, last names
     * */
-    fun getOnePerson():Persons{
+    fun getOnePerson(): Persons {
         val firstName = getOneFirstName()
         val lastName = getOneLastName()
         val fullName = "$firstName $lastName"
@@ -82,9 +80,9 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * @param size of list
     * @return list of persons
     * */
-    fun getPersonsList(size:Int): List<Persons> {
-        val list:ArrayList<Persons> = ArrayList()
-        for(i in 0 until size){
+    fun getPersonsList(size: Int): List<Persons> {
+        val list: ArrayList<Persons> = ArrayList()
+        for (i in 0 until size) {
             list.add(getOnePerson())
         }
         return list
@@ -96,5 +94,6 @@ class PersonService(private val firstNameRepository: FirstNameRepository, privat
     * Used in seed functions
     * */
     fun cleanFirstName() = firstNameRepository.deleteAll()
+
     fun cleanLastName() = lastNameRepository.deleteAll()
 }

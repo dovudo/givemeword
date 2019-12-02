@@ -8,13 +8,13 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-data class LogModel (
+data class LogModel(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id:Int,
-        val ip:String,
+        val id: Int,
+        val ip: String,
         val header: String,
         val path: String,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-        val timestamp: LocalDateTime? =  LocalDateTime.now()
+        val timestamp: LocalDateTime? = LocalDateTime.now()
 )
