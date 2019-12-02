@@ -5,7 +5,7 @@ build/
 /gradle
 !**/src/main/**
 !**/src/test/**
-
+.app.*
 
 ### STS ###
 .apt_generated
