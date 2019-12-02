@@ -10,12 +10,12 @@ import java.io.InputStream
 class SeedService {
 
     @Autowired
-    lateinit var personService:PersonService
+    lateinit var personService: PersonService
     @Autowired
     lateinit var wordsService: WordsService
 
     private val log = LoggerFactory.getLogger("Seed service")
-    private val time:Benchmarks = Benchmarks("Seeding class")
+    private val time: Benchmarks = Benchmarks("Seeding class")
 
     //Paths to seeding files
     private val wordsDirFile = "./src/main/resources/static/google-10000-english-no-swears.txt"
@@ -50,7 +50,7 @@ class SeedService {
     * @return Count of added FIRST NAMES
     * For tests benchmark looking and print the time of seeding
     * */
-    fun firstNameSeed(): String{
+    fun firstNameSeed(): String {
         val file = firstNameDirFile
         val stream: InputStream = File(file).inputStream()
         val firstNameList = mutableListOf<String>()
@@ -67,7 +67,7 @@ class SeedService {
     * @return Count of added LAST NAMES
     * For tests benchmark looking and print the time of seeding
     * */
-    fun lastNameSeed(): String{
+    fun lastNameSeed(): String {
         val file = lastNameDirFile
         val stream: InputStream = File(file).inputStream()
         val lastNameList = mutableListOf<String>()

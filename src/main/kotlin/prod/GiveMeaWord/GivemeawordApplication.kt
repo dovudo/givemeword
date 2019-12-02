@@ -1,5 +1,7 @@
 package prod.GiveMeaWord
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -16,25 +18,24 @@ class GivemeawordApplication
 
 fun main(args: Array<String>) {
     runApplication<GivemeawordApplication>(*args)
-    }
+}
 
 
 @Component
-class MRunnerAndConfigurer: CommandLineRunner, WebMvcConfigurer{
-/*
-    Auto seeding on run
-*/
+class MRunnerAndConfigurer : CommandLineRunner, WebMvcConfigurer {
     @Autowired
     lateinit var seed: SeedService
     @Autowired
     lateinit var myInterceptor: Interceptor
 
-    override fun run(args: Array<String>){
+    //Seeding and start self wakeup
+    override fun run(args: Array<String>) {
         //seed.firstNameSeed()
         //seed.lastNameSeed()
         //seed.wordSeed()
-        HerokuService().wakeUp()
-        println("After running")
+        GlobalScope.launch {
+            HerokuService().wakeUp()
+        }
     }
 
     override fun addInterceptors(registry: InterceptorRegistry) {
